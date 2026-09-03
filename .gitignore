@@ -1,0 +1,13 @@
+# Compiled binaries & build artifacts
+**/target/
+**/*.class
+
+# IDE & system metadata
+.idea/
+*.iml
+.DS_Store
+*.log
+
+# Maven wrapper cache (optional, keep mvnw/mvnw.cmd if needed)
+.mvn/timing.properties
+.mvn/wrapper/maven-wrapper.jar
