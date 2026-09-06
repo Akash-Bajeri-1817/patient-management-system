@@ -2,6 +2,7 @@ package com.akash.patientservice.exception;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -30,6 +31,15 @@ public class GlobalException
         log.warn("Email Already Exits {}", ex.getMessage());
         Map<String,String> errors = new HashMap<>();
         errors.put("message", ex.getMessage());
-        return ResponseEntity.badRequest().body(errors);
+        return ResponseEntity.status(HttpStatus.CONFLICT).body(errors);
+    }
+
+    @ExceptionHandler(PatientNotFoundException.class)
+    public ResponseEntity<Map<String, String>> handlePatientNotFoundException(PatientNotFoundException ex)
+    {
+        log.warn("Patient Not Found  {}", ex.getMessage());
+        Map<String,String> errors = new HashMap<>();
+        errors.put("message", ex.getMessage());
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(errors);
     }
 }

@@ -1,5 +1,6 @@
 package com.akash.patientservice.dto;
 
+import com.akash.patientservice.dto.validations.CreatePatinetValidationGroups;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -21,7 +22,7 @@ public class PatientRequestDto
     @NotBlank(message = "date of birth required")
     private String dateOfBirth;
 
-    @NotBlank(message = "registration date required")
+    @NotBlank(groups = CreatePatinetValidationGroups.class, message = "registration date required")
     private String registrationDate;
 
     public @NotBlank(message = "Name required ") @Size(max = 50, message = "max char allowed is 50, min is 3", min = 3) String getName() {
@@ -56,11 +57,11 @@ public class PatientRequestDto
         this.dateOfBirth = dateOfBirth;
     }
 
-    public @NotBlank(message = "registration date required") String getRegistrationDate() {
+    public  String getRegistrationDate() {
         return registrationDate;
     }
 
-    public void setRegistrationDate(@NotBlank(message = "registration date required") String registrationDate) {
+    public void setRegistrationDate(String registrationDate) {
         this.registrationDate = registrationDate;
     }
 }
